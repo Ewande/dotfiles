@@ -1,5 +1,9 @@
+# zplug
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
+
+# enable conda commands
+source /anaconda3/etc/profile.d/conda.sh
 
 ################################################################################
 ## Autocompletion
@@ -66,8 +70,16 @@ setopt INC_APPEND_HISTORY_TIME
 
 export PATH="/usr/local/bin:$PATH"
 
-source ~/.bashrc  # load regular bash config
+source ~/.secrets  # load secrets
 source /usr/local/etc/grc.bashrc  # load aliases for commands with colored output
+
+
+# aliases
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias ls="ls -G"
+alias ll="ls -lah"
 
 ################################################################################
 
@@ -120,5 +132,6 @@ __conda_envs_fast () {
 }
 
 compdef __conda_envs_fast to
+
 
 clear
