@@ -29,9 +29,19 @@ zstyle ':completion:*:make::' tag-order targets
 # conda autocompletion
 zplug "esc/conda-zsh-completion", use:_conda
 
+# up/down arrow command completion based on command history
+zplug "zsh-users/zsh-history-substring-search"
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+################################################################################
+## Prompt / Coloring / Navigation
 
 # command prompt theme
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, as:theme
+
+# set the right prompt to display time
+export RPROMPT="[%D{%b %f | %H:%M:%S}]"
 
 # coloring for functions like ping
 zplug "unixorn/warhol.plugin.zsh", use:warhol.plugin.zsh
@@ -39,10 +49,10 @@ zplug "unixorn/warhol.plugin.zsh", use:warhol.plugin.zsh
 # nice syntax coloring, defer:2 = load at the end
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
-# up/down arrow command completion based on command history
-zplug "zsh-users/zsh-history-substring-search"
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+# treat only alphanumerics as words
+# as a result: jumping between words will stop by e.g. `-`
+autoload -U select-word-style
+select-word-style bash
 
 ################################################################################
 
@@ -56,9 +66,6 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load --verbose
-
-# set right prompt to display time
-export RPROMPT="[%D{%b %f | %H:%M:%S}]"
 
 export SAVEHIST=10000
 export HISTSIZE=10000
