@@ -40,9 +40,6 @@ bindkey '^[[B' history-substring-search-down
 # command prompt theme
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, as:theme
 
-# set the right prompt to display time
-export RPROMPT="[%D{%b %f | %H:%M:%S}]"
-
 # coloring for functions like ping
 zplug "unixorn/warhol.plugin.zsh", use:warhol.plugin.zsh
 
@@ -66,6 +63,10 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load --verbose
+
+# set the right prompt to display time
+# (needs to be done after zplug load, otherwise will get overwritten)
+export RPROMPT="[%D{%b %f | %H:%M:%S}]"
 
 export SAVEHIST=10000
 export HISTSIZE=10000
