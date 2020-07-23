@@ -1,9 +1,12 @@
+# locale
+export LANG=en_US.UTF-8
+
 # zplug
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
 # enable conda commands
-source /anaconda3/etc/profile.d/conda.sh
+source $(head -n1 ~/.conda/environments.txt)/etc/profile.d/conda.sh
 
 ################################################################################
 ## Autocompletion
@@ -16,7 +19,7 @@ zstyle ':completion:*' list-colors ''  # colors in autocompletion
 zstyle ':completion::complete:*' use-cache 1
 bindkey '^[[Z' reverse-menu-complete  # shift+tab for reverse completion
 # zstyle ':completion:*:warnings' format 'No matches: %d'
-# zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|[._-]=* r:|=*'
+# zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z-_}={A-Za-z_-}' 'b:=*' # 'r:|[._-]=* r:|=*'
 
 # - git & docker
 zplug "plugins/docker", from:oh-my-zsh
